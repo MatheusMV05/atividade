@@ -7,7 +7,6 @@ import { CommentsProvider } from "@/features/comments/CommentsProvider"
 import { CommentsSheet } from "@/features/comments/CommentsSheet"
 import { Toolbar } from "@/features/comments/Toolbar"
 
-import { CookieBanner } from "./CookieBanner"
 import { Footer } from "./Footer"
 import { Header } from "./Header"
 
@@ -37,7 +36,6 @@ export function RootLayout() {
           <Outlet />
         </main>
         <Footer />
-        <CookieBanner />
 
         <CommentLayer />
         <Toolbar />
