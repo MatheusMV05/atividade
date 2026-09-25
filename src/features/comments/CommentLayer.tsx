@@ -1,4 +1,5 @@
 import * as React from "react"
+import { toast } from "sonner"
 
 import { captureAnchor } from "./anchor"
 import { commentsApi } from "./api"
@@ -28,7 +29,9 @@ export function CommentLayer() {
           setActiveThreadId(thread.id)
           setCommentMode(false)
         })
-        .catch(() => {
+        .catch((err) => {
+          console.error("Falha ao criar comentário:", err)
+          toast("Não foi possível criar o comentário agora. Veja o console para detalhes.")
           setCommentMode(false)
         })
     }

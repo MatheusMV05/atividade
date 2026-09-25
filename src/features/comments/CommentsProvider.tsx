@@ -20,7 +20,13 @@ export function CommentsProvider({ children }: { children: React.ReactNode }) {
   const [scrollTargetThreadId, setScrollTargetThreadId] = React.useState<string | null>(null)
 
   const refresh = React.useCallback(() => {
-    commentsApi.listThreads(screenKey).then(setThreads).catch(() => setThreads([]))
+    commentsApi
+      .listThreads(screenKey)
+      .then(setThreads)
+      .catch((err) => {
+        console.error("Falha ao carregar comentários desta tela:", err)
+        setThreads([])
+      })
   }, [screenKey])
 
   React.useEffect(() => {

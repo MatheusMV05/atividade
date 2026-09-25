@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Check, RotateCcw, Send, Trash2 } from "lucide-react"
+import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -63,32 +64,52 @@ export function ThreadPopover({
       author = saveIdentity(nameDraft.trim(), roleDraft)
     }
 
-    await commentsApi.addComment({
-      thread_id: thread.id,
-      author_name: author.name,
-      author_role: author.role,
-      author_token: author.token,
-      body: body.trim(),
-    })
-    setBody("")
-    load()
+    try {
+      await commentsApi.addComment({
+        thread_id: thread.id,
+        author_name: author.name,
+        author_role: author.role,
+        author_token: author.token,
+        body: body.trim(),
+      })
+      setBody("")
+      load()
+    } catch (err) {
+      console.error("Falha ao enviar comentário:", err)
+      toast("Não foi possível enviar o comentário agora.")
+    }
   }
 
   async function toggleResolved() {
-    await commentsApi.setResolved(thread.id, !thread.resolved)
-    refresh()
+    try {
+      await commentsApi.setResolved(thread.id, !thread.resolved)
+      refresh()
+    } catch (err) {
+      console.error("Falha ao atualizar a thread:", err)
+      toast("Não foi possível atualizar esta thread agora.")
+    }
   }
 
   async function handleDeleteThread() {
-    await commentsApi.deleteThread(thread.id)
-    setActiveThreadId(null)
-    refresh()
+    try {
+      await commentsApi.deleteThread(thread.id)
+      setActiveThreadId(null)
+      refresh()
+    } catch (err) {
+      console.error("Falha ao excluir a thread:", err)
+      toast("Não foi possível excluir esta thread agora.")
+    }
   }
 
   async function handleDeleteComment(commentId: string) {
     if (!identity) return
-    await commentsApi.deleteComment(commentId, identity.token)
-    load()
+    try {
+      await commentsApi.deleteComment(commentId, identity.token)
+      load()
+    } catch (err) {
+      console.error("Falha ao excluir o comentário:", err)
+      toast("Não foi possível excluir este comentário agora.")
+    }
   }
 
   return (
