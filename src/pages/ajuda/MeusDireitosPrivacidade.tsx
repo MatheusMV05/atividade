@@ -5,15 +5,15 @@ import { OutOfScopeLink } from "@/components/OutOfScopeLink"
 import { Card } from "@/components/ui/card"
 
 const perguntas = [
-  { texto: "Como altero ou corrijo os dados da minha conta?" },
+  { texto: "Como altero ou corrijo os dados da minha conta?", to: "/minha-conta/perfil" },
   { texto: "Como posso excluir meus dados pessoais?", to: "/ajuda/como-excluir-meus-dados" },
-  { texto: "Como posso consultar e baixar meus dados pessoais?" },
+  { texto: "Como posso consultar e baixar meus dados pessoais?", to: "/minha-conta/privacidade/relatorio" },
   { texto: "O que são as decisões automatizadas e como afetam minha conta?" },
   { texto: "Como configuro as comunicações que recebo?" },
   { texto: "Quero saber com quem compartilham meus dados" },
   { texto: "Se eu não me cadastrei, o Mercado Livre salva meus dados pessoais?" },
-  { texto: "O que são os cookies e como funcionam?" },
-  { texto: "Quais são meus direitos de privacidade?" },
+  { texto: "O que são os cookies e como funcionam?", to: "/minha-conta/privacidade/cookies" },
+  { texto: "Quais são meus direitos de privacidade?", to: "/privacidade" },
 ]
 
 export function MeusDireitosPrivacidade() {

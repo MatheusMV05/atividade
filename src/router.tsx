@@ -6,12 +6,16 @@ import { ComoExcluirMeusDados } from "@/pages/ajuda/ComoExcluirMeusDados"
 import { MeusDireitosPrivacidade } from "@/pages/ajuda/MeusDireitosPrivacidade"
 import { Email } from "@/pages/Email"
 import { Home } from "@/pages/Home"
+import { InformacoesDoPerfil } from "@/pages/minha-conta/InformacoesDoPerfil"
 import { MeuPerfil } from "@/pages/minha-conta/MeuPerfil"
+import { CancelarConta } from "@/pages/minha-conta/privacidade/CancelarConta"
 import { CentralPrivacidade } from "@/pages/minha-conta/privacidade/CentralPrivacidade"
+import { Cookies } from "@/pages/minha-conta/privacidade/Cookies"
 import { ExcluirDadosEnviado } from "@/pages/minha-conta/privacidade/excluir-dados/Enviado"
 import { ExcluirDadosRevisar } from "@/pages/minha-conta/privacidade/excluir-dados/Revisar"
 import { ExcluirDadosSelecionar } from "@/pages/minha-conta/privacidade/excluir-dados/Selecionar"
 import { ExcluirDadosVerificar } from "@/pages/minha-conta/privacidade/excluir-dados/Verificar"
+import { Permissoes } from "@/pages/minha-conta/privacidade/Permissoes"
 import { RelatorioEnviado } from "@/pages/minha-conta/privacidade/relatorio/Enviado"
 import { RelatorioSelecionar } from "@/pages/minha-conta/privacidade/relatorio/Selecionar"
 import { RelatorioVerificar } from "@/pages/minha-conta/privacidade/relatorio/Verificar"
@@ -52,10 +56,14 @@ export const router = createBrowserRouter([
         element: <MinhaContaLayout />,
         children: [
           { index: true, element: <MeuPerfil /> },
+          { path: "perfil", element: <InformacoesDoPerfil /> },
           {
             path: "privacidade",
             children: [
               { index: true, element: <CentralPrivacidade /> },
+              { path: "permissoes", element: <Permissoes /> },
+              { path: "cookies", element: <Cookies /> },
+              { path: "cancelar-conta", element: <CancelarConta /> },
               { path: "relatorio", element: <RelatorioSelecionar /> },
               { path: "relatorio/verificar", element: <RelatorioVerificar /> },
               { path: "relatorio/verificar/reforcada", element: <RelatorioVerificarReforcada /> },

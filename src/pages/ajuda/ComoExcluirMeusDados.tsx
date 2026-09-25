@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 
 import { Breadcrumb } from "@/components/layout/Breadcrumb"
-import { OutOfScopeLink } from "@/components/OutOfScopeLink"
 import { Card, CardContent } from "@/components/ui/card"
 
 export function ComoExcluirMeusDados() {
@@ -47,9 +46,12 @@ export function ComoExcluirMeusDados() {
               <strong>Cancelar conta</strong>. Essa ação é irreversível: você perde o acesso ao histórico de
               compras, pagamentos e comprovantes.
             </p>
-            <OutOfScopeLink className="mt-2 inline-block text-[14px] font-semibold text-ml-blue hover:underline">
+            <Link
+              to="/minha-conta/privacidade/cancelar-conta"
+              className="mt-2 inline-block text-[14px] font-semibold text-ml-blue hover:underline"
+            >
               Cancelar conta
-            </OutOfScopeLink>
+            </Link>
           </CardContent>
         </Card>
 

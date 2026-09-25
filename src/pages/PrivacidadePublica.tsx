@@ -2,14 +2,13 @@ import * as React from "react"
 import { FileText, Fingerprint, HelpCircle, ShieldCheck } from "lucide-react"
 import { Link } from "react-router-dom"
 
-import { OutOfScopeLink } from "@/components/OutOfScopeLink"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 
 const atalhos = [
   { label: "Gerenciar seus dados pessoais", to: "/minha-conta/privacidade" },
-  { label: "Configurar suas preferências" },
+  { label: "Configurar suas preferências", to: "/minha-conta/privacidade/permissoes" },
   { label: "Saiba como processamos seus dados", to: "#processamento" },
   { label: "Consultar perguntas e acessos frequentes", to: "/ajuda/meus-direitos-de-privacidade" },
 ]
@@ -67,26 +66,16 @@ export function PrivacidadePublica() {
       </div>
 
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-        {atalhos.map((a) =>
-          a.to ? (
-            <Link
-              key={a.label}
-              to={a.to}
-              data-cid={`privacidade-publica.atalho.${a.label}`}
-              className="rounded-[6px] border border-ml-border bg-ml-surface p-3 text-[14px] font-semibold text-ml-blue hover:bg-ml-bg/60"
-            >
-              {a.label}
-            </Link>
-          ) : (
-            <OutOfScopeLink
-              key={a.label}
-              data-cid={`privacidade-publica.atalho.${a.label}`}
-              className="rounded-[6px] border border-ml-border bg-ml-surface p-3 text-[14px] font-semibold text-ml-blue hover:bg-ml-bg/60"
-            >
-              {a.label}
-            </OutOfScopeLink>
-          )
-        )}
+        {atalhos.map((a) => (
+          <Link
+            key={a.label}
+            to={a.to}
+            data-cid={`privacidade-publica.atalho.${a.label}`}
+            className="rounded-[6px] border border-ml-border bg-ml-surface p-3 text-[14px] font-semibold text-ml-blue hover:bg-ml-bg/60"
+          >
+            {a.label}
+          </Link>
+        ))}
       </div>
 
       {aba === "dados" ? (
@@ -113,7 +102,7 @@ export function PrivacidadePublica() {
               experiência e anúncios.
             </p>
             <Button asChild size="sm" variant="secondary" className="mt-2">
-              <OutOfScopeLink>Configurar suas preferências</OutOfScopeLink>
+              <Link to="/minha-conta/privacidade/permissoes">Configurar suas preferências</Link>
             </Button>
           </section>
 
@@ -126,7 +115,7 @@ export function PrivacidadePublica() {
               gerenciar cada categoria separadamente.
             </p>
             <Button asChild size="sm" variant="secondary" className="mt-2">
-              <OutOfScopeLink>Configurar cookies</OutOfScopeLink>
+              <Link to="/minha-conta/privacidade/cookies">Configurar cookies</Link>
             </Button>
           </section>
 
@@ -139,7 +128,7 @@ export function PrivacidadePublica() {
               autorizado, personalizar ofertas e conteúdo.
             </p>
             <Button asChild size="sm" variant="secondary" className="mt-2">
-              <OutOfScopeLink>Gerenciar seus dados</OutOfScopeLink>
+              <Link to="/minha-conta/perfil">Gerenciar seus dados</Link>
             </Button>
           </section>
 

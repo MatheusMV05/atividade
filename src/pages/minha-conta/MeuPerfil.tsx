@@ -17,7 +17,7 @@ interface ProfileCardDef {
 }
 
 const cards: ProfileCardDef[] = [
-  { icon: User, title: "Informações do seu perfil", description: "Dados pessoais e da conta.", alerta: true, cid: "meu-perfil.card.informacoes" },
+  { icon: User, title: "Informações do seu perfil", description: "Dados pessoais e da conta.", alerta: true, to: "/minha-conta/perfil", cid: "meu-perfil.card.informacoes" },
   { icon: Shield, title: "Segurança", description: "Você tem configurações pendentes.", alerta: true, cid: "meu-perfil.card.seguranca" },
   { icon: Users, title: "Colaboradores", description: "Pessoas que operam com a sua conta.", cid: "meu-perfil.card.colaboradores" },
   { icon: Banknote, title: "Meli+", description: "Assinatura com benefícios em frete, compras e entretenimento.", cid: "meu-perfil.card.meli-mais" },
