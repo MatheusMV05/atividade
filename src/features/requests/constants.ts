@@ -3,11 +3,13 @@ import type { RequestKind, RequestStatus } from "./types"
 export const TIPO_LABEL: Record<RequestKind, string> = {
   relatorio: "Relatório de dados",
   exclusao: "Exclusão de dados específicos",
+  cancelamento: "Cancelamento de conta",
 }
 
 export const TIPO_ARTIGO: Record<RequestKind, string> = {
   relatorio: "Art. 18, II e V da LGPD (confirmação de acesso e portabilidade)",
   exclusao: "Art. 18, VI da LGPD (eliminação de dados tratados com consentimento)",
+  cancelamento: "Art. 18, VI da LGPD (eliminação total de dados — cancelamento de conta)",
 }
 
 // Prazo estimado que o Mercado Livre comunica hoje para cada fluxo (diagnóstico, item 6/8).
@@ -15,6 +17,7 @@ export const TIPO_ARTIGO: Record<RequestKind, string> = {
 export const PRAZO_ESTIMADO_DIAS: Record<RequestKind, number> = {
   relatorio: 2,
   exclusao: 10,
+  cancelamento: 2,
 }
 
 export const PRAZO_LEGAL_DIAS = 15

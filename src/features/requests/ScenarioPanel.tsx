@@ -49,6 +49,9 @@ export function ScenarioPanel({ open, onOpenChange }: { open: boolean; onOpenCha
               <Button type="button" variant="secondary" size="sm" onClick={() => createRequest("exclusao")}>
                 + Exclusão de dados
               </Button>
+              <Button type="button" variant="secondary" size="sm" onClick={() => createRequest("cancelamento")}>
+                + Cancelamento de conta
+              </Button>
             </div>
           </div>
 

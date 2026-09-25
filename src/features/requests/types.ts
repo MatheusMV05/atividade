@@ -1,4 +1,4 @@
-export type RequestKind = "relatorio" | "exclusao"
+export type RequestKind = "relatorio" | "exclusao" | "cancelamento"
 
 export type RequestStatus =
   | "recebida"
