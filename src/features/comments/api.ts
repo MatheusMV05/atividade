@@ -152,6 +152,48 @@ export const commentsApi = {
   deleteComment: supabaseEnabled ? supaDeleteComment : localDeleteComment,
 }
 
+// O CommentsProvider (uma vez por tela) e cada ThreadPopover aberto chamam
+// subscribeToChanges para o mesmo screenKey ao mesmo tempo. O client do
+// supabase-js reaproveita o canal Realtime pelo nome do tópico — a segunda
+// chamada a `.channel(mesmoTopico)` devolve o canal que a primeira já
+// inscreveu, e chamar `.on(...)` nele de novo lança "cannot add
+// postgres_changes callbacks ... after subscribe()". Por isso o canal é
+// compartilhado aqui por screenKey, com contagem de assinantes: só a
+// primeira chamada cria e assina o canal, só a última cancela.
+const canaisAtivos = new Map<string, { channel: ReturnType<NonNullable<typeof supabase>["channel"]>; ouvintes: Set<() => void> }>()
+
+function assinarCanalSupabase(screenKey: string, onChange: () => void): () => void {
+  const client = supabase!
+  let entrada = canaisAtivos.get(screenKey)
+
+  if (!entrada) {
+    const ouvintes = new Set<() => void>()
+    const channel = client
+      .channel(`screen:${screenKey}`)
+      .on("postgres_changes", { event: "*", schema: "public", table: "threads" }, () => {
+        ouvintes.forEach((fn) => fn())
+      })
+      .on("postgres_changes", { event: "*", schema: "public", table: "comments" }, () => {
+        ouvintes.forEach((fn) => fn())
+      })
+      .subscribe()
+    entrada = { channel, ouvintes }
+    canaisAtivos.set(screenKey, entrada)
+  }
+
+  entrada.ouvintes.add(onChange)
+
+  return () => {
+    const atual = canaisAtivos.get(screenKey)
+    if (!atual) return
+    atual.ouvintes.delete(onChange)
+    if (atual.ouvintes.size === 0) {
+      client.removeChannel(atual.channel)
+      canaisAtivos.delete(screenKey)
+    }
+  }
+}
+
 /**
  * Assina mudanças (novas threads/comentários) para a tela atual.
  * Supabase: Realtime de verdade entre pessoas diferentes.
@@ -159,15 +201,7 @@ export const commentsApi = {
  */
 export function subscribeToChanges(screenKey: string, onChange: () => void): () => void {
   if (supabaseEnabled && supabase) {
-    const client = supabase
-    const channel = client
-      .channel(`screen:${screenKey}`)
-      .on("postgres_changes", { event: "*", schema: "public", table: "threads" }, onChange)
-      .on("postgres_changes", { event: "*", schema: "public", table: "comments" }, onChange)
-      .subscribe()
-    return () => {
-      client.removeChannel(channel)
-    }
+    return assinarCanalSupabase(screenKey, onChange)
   }
 
   const handler = () => onChange()
