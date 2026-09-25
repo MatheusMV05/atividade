@@ -1,0 +1,187 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: local("Montserrat");
+  font-weight: 400 700;
+}
+
+:root {
+  /* Identidade visual Mercado Livre (design system "Andes") — CLAUDE.md §3.
+     Cores de texto/ícone abaixo foram escurecidas em relação aos tons "puros"
+     medidos no site (registrado em F09, findings.ts): #3483fa, #ff7733,
+     #f23d4f e #00a650 puros não atingem 4.5:1 de contraste como texto sobre
+     fundo branco (WCAG 2.2 AA). Fundos tingidos (ex.: --ml-blue-light) e usos
+     puramente decorativos continuam com o tom original. */
+  --ml-yellow: #ffe600;
+  --ml-blue: #2968c8;
+  --ml-blue-hover: #1f4e8f;
+  --ml-blue-light: rgba(65, 137, 230, 0.15);
+  --ml-bg: #ededed;
+  --ml-surface: #ffffff;
+  --ml-text: rgba(0, 0, 0, 0.9);
+  --ml-text-secondary: rgba(0, 0, 0, 0.62);
+  --ml-border: rgba(0, 0, 0, 0.1);
+  --ml-green: #00873e;
+  --ml-orange: #b34700;
+  --ml-red: #d6293d;
+  --ml-pink-meli: #e4007c;
+
+  --font-sans: "Proxima Nova", "Montserrat", -apple-system, Roboto, sans-serif;
+
+  /* Mapeamento shadcn */
+  --background: var(--ml-bg);
+  --foreground: var(--ml-text);
+  --card: var(--ml-surface);
+  --card-foreground: var(--ml-text);
+  --popover: var(--ml-surface);
+  --popover-foreground: var(--ml-text);
+  --primary: var(--ml-blue);
+  --primary-foreground: #ffffff;
+  --secondary: var(--ml-blue-light);
+  --secondary-foreground: var(--ml-blue);
+  --muted: #f5f5f5;
+  --muted-foreground: var(--ml-text-secondary);
+  --accent: var(--ml-blue-light);
+  --accent-foreground: var(--ml-blue);
+  --destructive: var(--ml-red);
+  --destructive-foreground: #ffffff;
+  --border: var(--ml-border);
+  --input: var(--ml-border);
+  --ring: var(--ml-blue);
+  --radius: 0.375rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-ml-yellow: var(--ml-yellow);
+  --color-ml-blue: var(--ml-blue);
+  --color-ml-blue-hover: var(--ml-blue-hover);
+  --color-ml-blue-light: var(--ml-blue-light);
+  --color-ml-bg: var(--ml-bg);
+  --color-ml-surface: var(--ml-surface);
+  --color-ml-text: var(--ml-text);
+  --color-ml-text-secondary: var(--ml-text-secondary);
+  --color-ml-border: var(--ml-border);
+  --color-ml-green: var(--ml-green);
+  --color-ml-orange: var(--ml-orange);
+  --color-ml-red: var(--ml-red);
+  --color-ml-pink-meli: var(--ml-pink-meli);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ml-bg);
+  color: var(--ml-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Foco visível estilo ML — WCAG / LBI (F09) */
+:focus-visible {
+  outline: 2px solid var(--ml-blue);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--ml-surface);
+  color: var(--ml-blue);
+  padding: 12px 16px;
+  border-radius: 0 0 6px 0;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* Modo comentário (CommentLayer) — cursor crosshair + destaque do bloco sob o cursor */
+body.comment-mode {
+  cursor: crosshair;
+}
+
+body.comment-mode [data-cid] {
+  cursor: crosshair;
+}
+
+body.comment-mode [data-cid]:hover {
+  outline: 2px dashed var(--ml-blue);
+  outline-offset: 2px;
+}
+
+/* Overlay "Mostrar anotações do redesenho" — destaca os blocos que resolvem
+   um achado do diagnóstico (F06-F09), com a etiqueta do achado (CLAUDE.md §6) */
+[data-finding] {
+  position: relative;
+}
+
+body.show-findings [data-finding] {
+  outline: 2px dashed var(--ml-orange);
+  outline-offset: 3px;
+}
+
+body.show-findings [data-finding]::after {
+  content: attr(data-finding);
+  position: absolute;
+  top: -10px;
+  left: -6px;
+  z-index: 30;
+  background: var(--ml-orange);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 3px 6px;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

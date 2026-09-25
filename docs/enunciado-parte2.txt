@@ -1,0 +1,37 @@
+Na atividade anterior, cada grupo realizou uma análise crítica de um canal real de exercício de direitos do titular, construindo um checklist próprio e documentando achados a partir de quatro eixos: existência e descoberta do canal, heurísticas de usabilidade, presença de padrões de design que obstruem o exercício de direitos, e conformidade formal com a LGPD.
+Diagnosticar, contudo, é apenas metade do trabalho. Apontar que um canal é confuso, inacessível ou indutor de desistência tem pouca utilidade prática se o grupo não consegue articular como ele deveria ser. Esta atividade exige, portanto, que o grupo transforme os problemas identificados em soluções concretas de design.
+
+O que o grupo deve fazer
+A partir dos achados documentados na primeira atividade, cada grupo deve projetar e prototipar uma versão revisada do canal analisado. O protótipo não precisa ser funcional do ponto de vista técnico, mas deve ser navegável e suficientemente detalhado para permitir que um avaliador percorra o fluxo de exercício de direitos do início ao fim — da descoberta do canal até a confirmação do atendimento da solicitação.
+O redesenho deve responder, de forma demonstrável, aos problemas levantados na avaliação anterior. Não se trata de propor um canal genericamente "melhor", mas de corrigir, com intencionalidade, cada falha apontada — e de justificar as escolhas feitas.
+
+O protótipo deve contemplar, no mínimo:
+
+    O ponto de entrada do canal (como o titular o encontra) e o caminho de descoberta a partir da página inicial da plataforma
+    O fluxo completo de solicitação para, ao menos, dois direitos previstos no art. 18 da LGPD, à escolha do grupo
+    Os estados intermediários relevantes: confirmação de identidade, feedback de envio, acompanhamento da solicitação, resposta final
+    Tratamento explícito de erros e situações excepcionais (ex.: solicitação indeferida, prazo excedido, necessidade de informações adicionais)
+    Textos efetivamente redigidos — não placeholders. 
+
+Entregáveis
+1 - Protótipo navegável, em Figma ou ferramenta equivalente, com link público de acesso liberado para visualização e comentários. 
+2 - Documento de justificativa do redesenho (memorial descritivo), de 4 a 8 páginas, organizado da seguinte forma: para cada problema identificado na atividade anterior, o grupo deve apresentar (i) a solução adotada no protótipo, (ii) a heurística de Nielsen ou princípio de design que fundamenta a escolha, e (iii) o dispositivo da LGPD ao qual a solução responde, quando aplicável. Problemas que o grupo decidiu não endereçar devem ser explicitados, com justificativa. 
+3 - Quadro comparativo "antes e depois" com, no mínimo, cinco pontos críticos do canal original e suas respectivas soluções no protótipo, acompanhados de capturas de tela de ambas as versões.
+
+Apresentação
+A apresentação seguirá o mesmo formato da atividade anterior — reunião simulada com os três públicos distintos na mesma sala —, mas agora o grupo defende as decisões de redesenho, e não os achados do diagnóstico. Espera-se que o grupo seja capaz de responder a objeções dos três perfis: o time técnico questionará a viabilidade de implementação, a liderança executiva questionará custos e prioridades, e o time jurídico questionará a suficiência das soluções frente às exigências legais.
+A apresentação deve ter entre 12 e 15 slides e incluir uma demonstração ao vivo do protótipo (walkthrough do fluxo principal).
+
+Prazo de entrega: 02/10
+
+Critérios de avaliação
+O grupo será avaliado pela coerência entre diagnóstico e solução — ou seja, em que medida o protótipo efetivamente responde aos problemas identificados na atividade anterior —, pela qualidade do design proposto (clareza, consistência, prevenção de erros, adequação da linguagem), pela fundamentação das escolhas no memorial descritivo, e pela capacidade de defender as decisões diante das três audiências.
+Protótipos esteticamente refinados, mas que não dialogam com os achados do diagnóstico, ou que adotam soluções sem fundamentação na LGPD e nas heurísticas, não serão considerados satisfatórios. O que se avalia é a capacidade de traduzir análise crítica em design intencional.
+
+Atenção!
+Para que esta atividade cumpra seu objetivo de simular uma reunião real com stakeholders (executivos e jurídico), o protótipo não deve ser um esboço ou rascunho (wireframe). Ele deve ser entregue em alta fidelidade, o que exige atenção aos seguintes pontos:
+
+    Acabamento Visual (UI): O design deve parecer um produto final real. Isso inclui o uso de cores institucionais, tipografia padronizada, ícones consistentes e imagens de alta qualidade. Se o usuário tirasse um print da tela, ele não deveria ser capaz de distinguir o protótipo de um site publicado.
+    Conteúdo Real: É terminantemente proibido o uso de textos temporários (como Lorem Ipsum). A linguagem é parte crítica da conformidade com a LGPD; portanto, botões, avisos de privacidade e mensagens de erro devem estar com o texto final que o cidadão leria.
+    Interatividade e Navegabilidade: O link do Figma deve permitir que o avaliador clique nos botões e navegue pelas telas de forma fluida. As transições devem fazer sentido e o fluxo deve ser contínuo (sem "pontas soltas").
+    Simulação de Realidade: Lembre-se que você está defendendo uma solução para a diretoria. Um design inacabado ou "em tons de cinza" reduz a percepção de valor da solução e dificulta a avaliação da usabilidade e da confiança que o canal deve transmitir.
