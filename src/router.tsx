@@ -1,4 +1,4 @@
-import { createBrowserRouter, Link } from "react-router-dom"
+import { createBrowserRouter, Link, useRouteError } from "react-router-dom"
 
 import { MinhaContaLayout } from "@/components/layout/MinhaContaLayout"
 import { RootLayout } from "@/components/layout/RootLayout"
@@ -25,6 +25,28 @@ import { Solicitacoes } from "@/pages/minha-conta/privacidade/Solicitacoes"
 import { PrivacidadePublica } from "@/pages/PrivacidadePublica"
 import { SobreOPrototipo } from "@/pages/SobreOPrototipo"
 
+function ErrorPage() {
+  const error = useRouteError()
+  console.error("Erro não tratado na navegação:", error)
+
+  return (
+    <div className="mx-auto flex min-h-screen max-w-[800px] flex-col items-center justify-center gap-3 px-4 py-16 text-center">
+      <h1 className="text-[24px] font-semibold text-ml-text">Algo deu errado</h1>
+      <p className="text-[14px] text-ml-text-secondary">
+        Este protótipo encontrou um erro inesperado. Veja o console do navegador para detalhes técnicos.
+      </p>
+      <div className="mt-2 flex gap-2">
+        <a
+          href="/"
+          className="flex h-12 items-center rounded-md bg-ml-blue px-6 text-[16px] font-semibold text-white hover:bg-ml-blue-hover"
+        >
+          Voltar para a home
+        </a>
+      </div>
+    </div>
+  )
+}
+
 function NotFound() {
   return (
     <div className="mx-auto max-w-[800px] px-4 py-16 text-center">
@@ -44,6 +66,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Home /> },
       { path: "privacidade", element: <PrivacidadePublica /> },
